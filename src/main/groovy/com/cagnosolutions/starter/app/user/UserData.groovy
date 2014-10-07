@@ -44,8 +44,6 @@ class UserService {
     }
 
     User save(User user) {
-        if(user.id == null)
-            user.creation = System.currentTimeMillis()
         repo.save user
     }
 

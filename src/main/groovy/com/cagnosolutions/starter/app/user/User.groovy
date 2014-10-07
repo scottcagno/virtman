@@ -20,6 +20,5 @@ class User {
     @GeneratedValue
     Long id
     String name, email, username, password, role = "ROLE_USER"
-    Long creation, lastSeen
     short active = 1
 }

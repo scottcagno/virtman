@@ -1,4 +1,4 @@
-<div id="navbar" class="navbar navbar-default navbar-static-top navbar-inverse">
+<div id="navbar" class="navbar navbar-default navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -7,15 +7,11 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/"><i class="fa fa-home"></i> Home</a>
+			<a class="navbar-brand" href="/">VirtMan</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<#if authenticated??>
-					<li><a href="/logout"><i class="fa fa-unlock"></i> Logout (${authenticated})</a></li>
-					<#else/>
-					<li><a href="/secure/login?forward=user"><i class="fa fa-user"></i> Login</a></li>
-				</#if>
+                <li><a href="/secure"><i class="fa fa-lock"></i> Login</a></li>
 			</ul>
 		</div>
 	</div>
