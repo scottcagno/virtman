@@ -53,7 +53,7 @@
                     Connect to QEMU Host
                 </div>
                 <div class="panel-body">
-                    <form role="form" method="post" action="/qemu">
+                    <form role="form" method="post" action="/qemu/connect">
                         <div class="form-group">
                             <input type="text" name="host" class="form-control" placeholder="Host URI" required="true"/>
                         </div>

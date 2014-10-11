@@ -2,9 +2,8 @@ package com.cagnosolutions.starter.app.qemu
 
 import groovy.transform.CompileStatic
 import org.libvirt.Connect
-import org.libvirt.Domain
-import org.libvirt.DomainInfo
 import org.springframework.stereotype.Service
+
 /**
  * Created by Scott Cagno.
  * Copyright Cagno Solutions. All rights reserved.
@@ -14,20 +13,25 @@ import org.springframework.stereotype.Service
 @Service(value = "qemuService")
 class QEMUService {
 
-    VirtualMachine getVM(Connect conn, String name) {
-        def vm = new VirtualMachine()
-        def dom = conn.domainLookupByName name
-        vm.id = dom.getID()
-        vm.name = name
-        vm.running = dom.info.state.equals DomainInfo.DomainState.VIR_DOMAIN_RUNNING
-        vm.uuid = dom.getUUIDString()
-        vm.cpu = dom.getMaxVcpus()
-        vm.ram = dom.getMaxMemory()/1024L as long
-        vm
+    Connect conn = null
+
+    boolean connect(String host) {
+        try {
+            conn = new Connect(host)
+        } catch(ignored) {
+            return false
+        }
+        true
     }
 
-    Domain getDomain(Connect conn, String name) {
-        conn.domainLookupByName name
+    def disconnect() {
+        !conn.connected ?: conn.close()
+        conn = null
     }
+
+    boolean isConnected() {
+        (conn != null) ? conn.connected : false
+    }
+
 
 }

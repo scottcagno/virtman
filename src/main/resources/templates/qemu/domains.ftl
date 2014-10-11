@@ -19,6 +19,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>State</th>
+                            <th>View</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,7 @@
                                     <span class="label label-danger">Shutoff</span>
                                 </#if>
                             </td>
+                            <td><a href="/qemu/domain/${(dom.name)!}">View</a></td>
                         </tr>
                         </#list>
                     <#else>

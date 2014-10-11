@@ -7,21 +7,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">${(host)!'QEMU Manager'}</a>
+			<a class="navbar-brand" href="#">${(host + "/" + domain.name)!}</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
-                <li id="overview">
-                    <a href="/qemu/overview">Overview</a>
-                </li>
-                <li id="networks">
-                    <a href="/qemu/networks">Networks</a>
-                </li>
-                <li id="storage">
-                    <a href="/qemu/storage">Storage</a>
-                </li>
                 <li id="domains">
-                    <a href="/qemu/domains">Domains</a>
+                    <a href="/qemu/domains">All Domains</a>
                 </li>
                 <li>
                     <a href="/qemu/disconnect">Logout</a>

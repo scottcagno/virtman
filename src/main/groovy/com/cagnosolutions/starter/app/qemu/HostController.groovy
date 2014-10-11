@@ -1,13 +1,10 @@
 package com.cagnosolutions.starter.app.qemu
 import groovy.transform.CompileStatic
-import org.libvirt.Connect
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.servlet.mvc.support.RedirectAttributes
-
 /**
  * Created by Scott Cagno.
  * Copyright Cagno Solutions. All rights reserved.
@@ -16,42 +13,35 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes
 @CompileStatic
 @Controller
 @RequestMapping(value = "/qemu")
-class QEMUController {
+class HostController {
 
     @Autowired
     QEMUService qemuService
-
-    Connect qemu = null
 
     @RequestMapping(method = RequestMethod.GET)
     String qemu() {
         "qemu/qemu"
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    String connect(String host, RedirectAttributes attr) {
-        try {
-            qemu = new Connect(host)
-        } catch(ignored) {
-            attr.addFlashAttribute "alertError", "Error connecting to ${host}"
+    @RequestMapping(value = "/connect", method = RequestMethod.POST)
+    String connectToHost(String host) {
+        def connected = qemuService.connect(host)
+        if(!connected)
             return "redirect:/qemu"
-        }
-        attr.addFlashAttribute "alertSuccess", "Successfully connected to ${host}"
         "redirect:/qemu/overview"
     }
 
-    @RequestMapping(value = "/close", method = RequestMethod.GET)
-    String closeAndLogout() {
-        if(qemu != null && qemu.connected) {
-            qemu.close()
-            qemu = null
-        }
+    @RequestMapping(value = "/disconnect", method = RequestMethod.GET)
+    String disconnectAndLogout() {
+        qemuService.disconnect()
         "redirect:/logout"
     }
 
     @RequestMapping(value = "/overview", method = RequestMethod.GET)
     String qemuOverview(Model model) {
-        if(qemu == null) return "redirect:/qemu"
+        if(!qemuService.connected)
+            return "redirect:/qemu"
+        def qemu = qemuService.conn
         def overview = [
                 name: qemu.getHostName(),
                 visor: qemu.getType().toLowerCase(),
@@ -66,7 +56,9 @@ class QEMUController {
 
     @RequestMapping(value = "/networks", method = RequestMethod.GET)
     String qemuNetworks(Model model) {
-        if(qemu == null) return "redirect:/qemu"
+        if(!qemuService.isConnected())
+            return "redirect:/qemu"
+        def qemu = qemuService.conn
         def networks = []
         qemu.listNetworks().each { String name ->
             def net = qemu.networkLookupByName name
@@ -82,7 +74,9 @@ class QEMUController {
 
     @RequestMapping(value = "/storage", method = RequestMethod.GET)
     String qemuStorage(Model model) {
-        if(qemu == null) return "redirect:/qemu"
+        if(!qemuService.isConnected())
+            return "redirect:/qemu"
+        def qemu = qemuService.conn
         def storage = []
         qemu.listStoragePools().each { String name ->
             def dev = qemu.storagePoolLookupByName name
@@ -101,7 +95,9 @@ class QEMUController {
 
     @RequestMapping(value = "/domains", method = RequestMethod.GET)
     String qemuDomains(Model model) {
-        if(qemu == null) return "redirect:/qemu"
+        if(!qemuService.isConnected())
+            return "redirect:/qemu"
+        def qemu = qemuService.conn
         def domains = []
         qemu.listDefinedDomains().each { String name ->
             def dom = qemu.domainLookupByName name
