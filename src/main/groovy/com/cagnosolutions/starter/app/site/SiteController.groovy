@@ -1,6 +1,6 @@
 package com.cagnosolutions.starter.app.site
-
 import groovy.transform.CompileStatic
+import org.libvirt.Connect
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -39,9 +39,15 @@ class SiteController {
     }
 
     // overview
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    String overview() {
-        "overview"
+    @RequestMapping(value = "/secure/overview", method = RequestMethod.GET)
+    String connect() {
+        Connect conn;
+        try {
+            conn = new Connect("qemu:///system")
+        } catch (any) {
+            any.printStackTrace()
+        }
+        conn.getType()
     }
 
 }
