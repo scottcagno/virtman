@@ -1,8 +1,9 @@
-<div class="text-center footer">
-	<p class="text-muted">
-		<small>
-			Copyright Cagno Solutions <br/>
-			A Domain of Cagno Enterprises, Inc.
-		</small>
-	</p>
-</div>
+<section id="footer">
+    <div class="row">
+        <footer>
+            <small>
+                <p class="text-muted"><i class="fa fa-copyright"> Cagno Solutions, LLC</i></p>
+            </small>
+        </footer>
+    </div>
+</section>

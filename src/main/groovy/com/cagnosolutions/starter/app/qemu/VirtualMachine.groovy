@@ -1,4 +1,4 @@
-package com.cagnosolutions.starter.app
+package com.cagnosolutions.starter.app.qemu
 import groovy.transform.CompileStatic
 /**
  * Created by Scott Cagno.

@@ -1,5 +1,4 @@
 package com.cagnosolutions.starter.app
-
 import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
@@ -16,12 +15,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
-import javax.sql.DataSource
 
+import javax.sql.DataSource
 /**
  * Created by Scott Cagno.
  * Copyright Cagno Solutions. All rights reserved.
@@ -56,13 +54,13 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN")
-        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder())
-                .usersByUsernameQuery("SELECT username, password, active FROM user WHERE username=?")
-                .authoritiesByUsernameQuery("SELECT username, role FROM user WHERE username=?")
+        //auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(new BCryptPasswordEncoder())
+        //        .usersByUsernameQuery("SELECT username, password, active FROM user WHERE username=?")
+        //        .authoritiesByUsernameQuery("SELECT username, role FROM user WHERE username=?")
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/secure/**").hasAnyRole("ADMIN", "USER")
+        http.authorizeRequests().antMatchers("/qemu/**").hasAnyRole("ADMIN", "USER")
         http.formLogin().loginPage("/login")
         http.logout().logoutSuccessUrl("/").logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
     }

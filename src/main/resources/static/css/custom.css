@@ -1,8 +1,15 @@
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #fff;
+    background-color: #ddd;
 }
 
-.footer {
+footer {
     margin-top: 25px;
+    position: fixed;
+    left: 20px;
+    bottom: 5px;
+}
+
+.pad-top {
+    margin-top: 50px;
 }

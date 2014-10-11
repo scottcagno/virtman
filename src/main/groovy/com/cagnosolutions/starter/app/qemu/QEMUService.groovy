@@ -1,4 +1,5 @@
-package com.cagnosolutions.starter.app
+package com.cagnosolutions.starter.app.qemu
+
 import groovy.transform.CompileStatic
 import org.libvirt.Connect
 import org.libvirt.Domain
