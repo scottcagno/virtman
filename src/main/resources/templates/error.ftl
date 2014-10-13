@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head id="head">
-		<title>Error Page</title>
-		<#include "stubs/header.ftl"/>
-	</head>
-	<body id="body">
+<head id="head">
+	<title>Error</title>
+	<#include "stubs/header.ftl"/>
+</head>
+<body>
+<#include "stubs/default-navbar.ftl"/>
 
-		<#include "stubs/navbar.ftl"/>
+<!-- content -->
+<section id="error" class="wow fadeInDownBig">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="text-center">
+                <h2>Aw, you messed up. <small>${(exception)!'An unknown error has occoured.'}</small></h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- content -->
 
-		<!-- content -->
-		<div id="content" class="container">
-			<div class="col-sm-10 col-sm-offset-1">
-				<legend>${(error)!} <span class="text-danger">${(message)!}</span></legend>
-				<pre>${(exception)!'An unknown error has occoured. That really sucks.'}</pre>
-			</div>
-		</div>
-		<!-- content -->
+<!-- scripts -->
+<#include "stubs/scripts.ftl"/>
+<!-- scripts -->
 
-		<#include "stubs/footer.ftl"/>
-
-	</body>
+<!-- footer -->
+<#include "stubs/footer.ftl"/>
+<!-- footer -->
+</body>
 </html>

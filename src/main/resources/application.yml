@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    active: production
-
   freemarker:
     exposeSessionAttributes: true
 
@@ -11,47 +8,11 @@ server:
 
 security:
   user:
-    role: ADMIN
     name: admin
     password: admin
+    role: ADMIN
   enableCsrf: true
-  
-endpoints:
-  shutdown:
-    enabled: true
 
 http:
   mappers:
     jsonPrettyPrint: true
-
-mail:
-  host: smtp.mandrillapp.com
-  port: 587
-  user: scottiecagno@gmail.com
-  pass: AyRsB5cI5H4bcrbheDKfzQ
-
----
-spring:
-  profiles: development
-
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:./h2data;MODE=MySQL
-    username: sa
-    password: sa
-
-  jpa:
-    generateDdl: true
-
----
-spring:
-  profiles: production
-
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/virtman?createDatabaseIfNotExist=true
-    username: root
-    password: root
-
-  jpa:
-    generateDdl: true

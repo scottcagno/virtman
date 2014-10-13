@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head id="head">
-    <title>Overview</title>
+    <title>${domain.name!}</title>
 <#include "../../stubs/header.ftl"/>
 </head>
 <body id="body">
-<#include "navbar.ftl"/>
+<#include "../../stubs/domain-nav.ftl"/>
 
 <!-- content -->
 <section id="domain" class="wow fadeInDown">
     <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
+            <#if domain?has_content>
+                Id : ${domain.id} <br/>
+                Name : ${domain.name} <br/>
+                UUID : ${domain.uuid} <br/>
+                Memory : ${domain.memory?c + " MB"} <br/>
+                vCPU : ${domain.vcpu} <br/>
+                Autostart : ${domain.autostart?c} <br/>
+            </#if>
+            <#--
             <h4 class="text-muted"><i class="fa fa-cube"></i> ${(domain.name)!}</h4>
             <div class="panel panel-default">
                 <table class="table table-striped">
@@ -51,6 +60,9 @@
                     </tbody>
                 </table>
             </div>
+            -->
+
+
         </div>
     </div>
 </section>

@@ -1,5 +1,6 @@
-package com.cagnosolutions.starter.app.qemu
+package com.cagnosolutions.admin.hypervisor.domain
 
+import com.cagnosolutions.admin.hypervisor.HypervisorService
 import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -15,19 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod
 
 @CompileStatic
 @Controller
-@RequestMapping(value = "/qemu/domain")
 class DomainController {
 
     @Autowired
-    QEMUService qemuService
+    HypervisorService visor
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/hypervisor/domain/{name}", method = RequestMethod.GET)
     String viewDomain(Model model, @PathVariable String name) {
-        if(!qemuService.connected)
-            return "redirect:/qemu"
-        def qemu = qemuService.conn
-        def domain = qemu.domainLookupByName name
-        model.addAllAttributes([host: qemu.getURI(), domain: domain])
-        "qemu/domain/domain"
+        def domain = visor.getDomainByName name
+        if(domain == null) return "redirect:/hypervisor"
+        model.addAllAttributes([host: visor.getHost(), domain: domain])
+        "hypervisor/domain/view"
     }
 }

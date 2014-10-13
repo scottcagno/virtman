@@ -7,15 +7,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">${(host + "/" + domain.name)!}</a>
+			<a class="navbar-brand" href="#">${(host + "/" + domain.name)!'VirtMan'}</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
                 <li id="domains">
-                    <a href="/qemu/domains">All Domains</a>
+                    <a href="/hypervisor/domain">All Domains</a>
                 </li>
                 <li>
-                    <a href="/qemu/disconnect">Logout</a>
+                    <a href="/hypervisor/disconnect">Logout</a>
                 </li>
 			</ul>
 		</div>
@@ -29,14 +29,14 @@
 			${alert}
 		</div>
 	</div>
-<#elseif alertError??/>
+<#elseif alertError??>
 	<div id="alert" class="col-sm-10 col-sm-offset-1">
 		<div class="alert alert-danger alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			${alertError}
 		</div>
 	</div>
-<#elseif alertSuccess??/>
+<#elseif alertSuccess??>
 	<div id="alert" class="col-sm-10 col-sm-offset-1">
 		<div class="alert alert-success alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

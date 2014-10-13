@@ -16,31 +16,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">QEMU Manager</a>
+            <a class="navbar-brand" href="/">VirtMan</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/qemu/close">Logout</a>
+                    <a href="/hypervisor/disconnect">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 <#if alertError??>
-<div id="alert" class="col-sm-10 col-sm-offset-1">
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    ${alertError}
+    <div id="alert" class="col-sm-10 col-sm-offset-1">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        ${alertError}
+        </div>
     </div>
-</div>
 <#elseif alertSuccess??>
-<div id="alert" class="col-sm-10 col-sm-offset-1">
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    ${alertSuccess}
+    <div id="alert" class="col-sm-10 col-sm-offset-1">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        ${alertSuccess}
+        </div>
     </div>
-</div>
 </#if>
 <!-- navbar -->
 
@@ -53,7 +53,7 @@
                     Connect to QEMU Host
                 </div>
                 <div class="panel-body">
-                    <form role="form" method="post" action="/qemu/connect">
+                    <form role="form" method="post" action="/hypervisor/connect">
                         <div class="form-group">
                             <input type="text" name="host" class="form-control" placeholder="Host URI" required="true"/>
                         </div>

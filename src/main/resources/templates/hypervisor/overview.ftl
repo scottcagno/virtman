@@ -5,7 +5,7 @@
 	<#include "../stubs/header.ftl"/>
 </head>
 <body id="body">
-<#include "navbar.ftl"/>
+<#include "../stubs/hypervisor-nav.ftl"/>
 
 <!-- content -->
 <section id="overview" class="wow fadeInDown">

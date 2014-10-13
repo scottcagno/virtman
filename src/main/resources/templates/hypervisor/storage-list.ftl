@@ -5,13 +5,13 @@
 	<#include "../stubs/header.ftl"/>
 </head>
 <body id="body">
-<#include "navbar.ftl"/>
+<#include "../stubs/hypervisor-nav.ftl"/>
 
 <!-- content -->
-<section id="storage" class="wow fadeInDown">
+<section id="storage-list" class="wow fadeInDown">
     <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
-            <h4 class="text-muted"><i class="fa fa-database"></i> Storage</h4>
+            <h4 class="text-muted"><i class="fa fa-database"></i> Storage List</h4>
             <div class="panel panel-default">
                 <table class="table table-striped">
                     <thead>
@@ -22,8 +22,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <#if storage?has_content>
-                        <#list storage as dev>
+                    <#if storageList?has_content>
+                        <#list storageList as dev>
                         <tr>
                             <td>${(dev.name)!}</td>
                             <td>${(dev.volume)!}</td>
@@ -43,7 +43,7 @@
 
 <!-- scripts -->
 <#include "../stubs/scripts.ftl"/>
-<script>$('#storage').addClass('active');</script>
+<script>$('#storage-list').addClass('active');</script>
 <!-- scripts -->
 
 <!-- footer -->

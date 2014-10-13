@@ -7,24 +7,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">${(host)!'QEMU Manager'}</a>
+			<a class="navbar-brand" href="/">VirtMan</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav navbar-right">
-                <li id="overview">
-                    <a href="/qemu/overview">Overview</a>
-                </li>
-                <li id="networks">
-                    <a href="/qemu/networks">Networks</a>
-                </li>
-                <li id="storage">
-                    <a href="/qemu/storage">Storage</a>
-                </li>
-                <li id="domains">
-                    <a href="/qemu/domains">Domains</a>
-                </li>
                 <li>
-                    <a href="/qemu/disconnect">Logout</a>
+                    <a href="/">Home</a>
                 </li>
 			</ul>
 		</div>
@@ -38,14 +26,14 @@
 			${alert}
 		</div>
 	</div>
-<#elseif alertError??/>
+<#elseif alertError??>
 	<div id="alert" class="col-sm-10 col-sm-offset-1">
 		<div class="alert alert-danger alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			${alertError}
 		</div>
 	</div>
-<#elseif alertSuccess??/>
+<#elseif alertSuccess??>
 	<div id="alert" class="col-sm-10 col-sm-offset-1">
 		<div class="alert alert-success alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

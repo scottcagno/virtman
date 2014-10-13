@@ -1,26 +1,29 @@
-package com.cagnosolutions.starter.app
+package com.cagnosolutions.admin
 import groovy.transform.CompileStatic
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
+
 /**
  * Created by Scott Cagno.
  * Copyright Cagno Solutions. All rights reserved.
  */
 
 @CompileStatic
-@Controller(value = "siteController")
-class SiteController {
+@Controller
+class PublicController {
 
-    // login
     @RequestMapping(value = "/login")
     String login() {
         "login"
     }
 
-    // error
+    @RequestMapping(value = "/")
+    String catcher() {
+        "redirect:/hypervisor"
+    }
+
     @ExceptionHandler(value = [Exception.class, RuntimeException.class])
     String errors(Exception e, Model model) {
         def stack = []
@@ -29,12 +32,6 @@ class SiteController {
         }
         model.addAllAttributes([message: e.getLocalizedMessage(), exception: stack.join('\n')])
         "error"
-    }
-
-    // index
-    @RequestMapping(value = ["/","/index","/home"], method = RequestMethod.GET)
-    String index() {
-        "redirect:/qemu"
     }
 
 }

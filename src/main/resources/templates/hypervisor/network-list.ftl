@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head id="head">
-	<title>Networks</title>
+	<title>Network</title>
 	<#include "../stubs/header.ftl"/>
 </head>
 <body id="body">
-<#include "navbar.ftl"/>
+<#include "../stubs/hypervisor-nav.ftl"/>
 
 <!-- content -->
-<section id="networks" class="wow fadeInDown">
+<section id="network-list" class="wow fadeInDown">
     <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
-            <h4 class="text-muted"><i class="fa fa-cloud"></i> Networks</h4>
+            <h4 class="text-muted"><i class="fa fa-cloud"></i> Network List</h4>
             <div class="panel panel-default">
                 <table class="table table-striped">
                     <thead>
@@ -22,8 +22,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <#if networks?has_content>
-                            <#list networks as net>
+                        <#if networkList?has_content>
+                            <#list networkList as net>
                                 <tr>
                                     <td>${(net.name)!}</td>
                                     <td>${(net.device)!}</td>
@@ -49,7 +49,7 @@
 
 <!-- scripts -->
 <#include "../stubs/scripts.ftl"/>
-<script>$('#networks').addClass('active');</script>
+<script>$('#network-list').addClass('active');</script>
 <!-- scripts -->
 
 <!-- footer -->

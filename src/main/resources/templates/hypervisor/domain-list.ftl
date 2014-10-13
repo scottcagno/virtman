@@ -5,13 +5,13 @@
 	<#include "../stubs/header.ftl"/>
 </head>
 <body id="body">
-<#include "navbar.ftl"/>
+<#include "../stubs/hypervisor-nav.ftl"/>
 
 <!-- content -->
-<section id="domains" class="wow fadeInDown">
+<section id="domain-list" class="wow fadeInDown">
     <div class="container">
         <div class="col-sm-6 col-sm-offset-3">
-            <h4 class="text-muted"><i class="fa fa-cube"></i> Domains</h4>
+            <h4 class="text-muted"><i class="fa fa-cube"></i> Domain List</h4>
             <div class="panel panel-default">
                 <table class="table table-striped">
                     <thead>
@@ -19,12 +19,11 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>State</th>
-                            <th>View</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <#if domains?has_content>
-                        <#list domains as dom>
+                        <#list domainList as dom>
                         <tr>
                             <td>
                                 <#if dom.id == -1>
@@ -41,12 +40,11 @@
                                     <span class="label label-danger">Shutoff</span>
                                 </#if>
                             </td>
-                            <td><a href="/qemu/domain/${(dom.name)!}">View</a></td>
+                            <td>
+                                <a href="/hypervisor/domain/${(dom.name)!}">View</a>
+                            </td>
                         </tr>
                         </#list>
-                    <#else>
-                    <tr class="text-center">No domains found</tr>
-                    </#if>
                     </tbody>
                 </table>
             </div>
@@ -57,7 +55,7 @@
 
 <!-- scripts -->
 <#include "../stubs/scripts.ftl"/>
-<script>$('#domains').addClass('active');</script>
+<script>$('#domain-list').addClass('active');</script>
 <!-- scripts -->
 
 <!-- footer -->
